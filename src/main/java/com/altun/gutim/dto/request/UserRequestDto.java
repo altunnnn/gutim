@@ -1,6 +1,7 @@
 package com.altun.gutim.dto.request;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,12 @@ import jakarta.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserRequestDto {
+
+    @NotNull(message = "User id must not be null")
+    @Positive(message = "User ID must be a positive number")
+    private Long id;
+
+
     @NotNull(message = "Firstname must not be null")
     @Size(max = 30, message = "Firstname must not exceed 30 characters")
     private String firstname;

@@ -1,7 +1,6 @@
 package com.altun.gutim.mapper;
 
 import com.altun.gutim.dto.request.BlogRequestDto;
-import com.altun.gutim.dto.request.ClassRequestDto;
 import com.altun.gutim.dto.response.BlogResponseDto;
 
 import com.altun.gutim.entity.Blog;
