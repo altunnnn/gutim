@@ -25,8 +25,10 @@ public class MembershipPlanServiceImpl implements MembershipPlanService {
     @Override
     public MembershipPlanResponseDto create(MembershipPlanRequestDto membershipPlanRequestDto){
         MembershipPlan membershipPlanMapperEntity = membershipPlanMapper.toEntity(membershipPlanRequestDto);
+        membershipPlanRepository.save(membershipPlanMapperEntity);
         return membershipPlanMapper.toDto(membershipPlanMapperEntity);
     }
+
     @Override
     public Page<MembershipPlanResponseDto> getAllMembershipPlans(Pageable pageable){
         return membershipPlanRepository.findAllBy(pageable).map(membershipPlanMapper::toDto);

@@ -13,18 +13,23 @@ import java.util.List;
 @NoArgsConstructor
 public class TrainerRequestDto {
 
-    @NotNull(message = "Trainer id must not be null")
-    @Positive(message = "Trainer ID must be a positive number")
+
     private Long id;
 
+    @NotNull(message = "Name must not be null")
     private String name;
 
+    @NotNull(message = "Position must not be null")
     private String position;
 
+    @NotNull(message = "Description must not be null")
     private String description;
 
+    @NotNull(message = "Image must not be null")
     private String image;
 
+    @NotNull(message = "Age must not be null")
+    @Positive
     private Integer age;
 
     private List<Long> classesIds;

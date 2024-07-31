@@ -28,6 +28,7 @@ public class TrainerServiceImpl implements TrainerService {
     public TrainerResponseDto create(TrainerRequestDto trainerRequestDto){
         Trainer entity = trainerMapper.toEntity(trainerRequestDto);
         entity.setClasses(classRepository.findAllById(trainerRequestDto.getClassesIds()));
+        trainerRepository.save(entity);
         return trainerMapper.toDto(entity);
     }
     @Override

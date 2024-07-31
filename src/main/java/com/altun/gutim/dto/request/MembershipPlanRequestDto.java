@@ -11,17 +11,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MembershipPlanRequestDto {
 
-    @NotNull(message = "Membership Plan id must not be null")
-    @Positive(message = "Membership Plan ID must be a positive number")
     private Long id;
 
+    @NotNull(message = "name must not be null")
     private String name;
 
+    @NotNull(message = "Price must not be null")
+    @Positive
     private Integer price;
 
+    @NotNull(message = "Duration must not be null")
     private String duration;
 
+    @NotNull(message = "PersonalTrainer must not be null")
     private Integer personalTrainer;
 
+    @NotNull(message = "People number must not be null")
     private Integer amountOfPeople;
 }

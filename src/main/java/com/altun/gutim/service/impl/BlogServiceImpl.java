@@ -26,6 +26,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public BlogResponseDto create(BlogRequestDto blogRequestDto){
         Blog blogEntity = blogMapper.toEntity(blogRequestDto);
+        blogRepository.save(blogEntity);
         return blogMapper.toDto(blogEntity);
     }
     @Override

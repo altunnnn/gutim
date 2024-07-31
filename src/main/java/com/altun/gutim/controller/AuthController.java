@@ -1,5 +1,6 @@
 package com.altun.gutim.controller;
 
+ import com.altun.gutim.dto.request.AuthRequest;
  import com.altun.gutim.dto.request.JwtRequest;
 import com.altun.gutim.dto.request.UserRequestDto;
 import com.altun.gutim.dto.response.JwtResponse;
@@ -45,8 +46,8 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserResponseDto> registerUser(@RequestBody UserRequestDto userRequestDto) {
-        UserResponseDto responseDto = userService.create(userRequestDto);
+    public ResponseEntity<UserResponseDto> registerUser(@RequestBody AuthRequest authRequest) {
+        UserResponseDto responseDto = userService.registerUser(authRequest);
         return ResponseEntity.status(201).body(responseDto);
     }
 }

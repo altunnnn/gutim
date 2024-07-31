@@ -25,6 +25,7 @@ public class ClassServiceImpl implements ClassService {
     public ClassResponseDto create(ClassRequestDto clas){
         Class classEntity = classMapper.toEntity(clas);
         classEntity.setTrainer(trainerRepository.findById(clas.getTrainerId()).get());
+        classRepository.save(classEntity);
         return classMapper.toDto(classEntity);
     }
     @Override

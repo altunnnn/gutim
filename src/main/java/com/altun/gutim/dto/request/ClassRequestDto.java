@@ -13,8 +13,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ClassRequestDto {
 
-    @NotNull(message = "Class id must not be null")
-    @Positive(message = "Class ID must be a positive number")
     private Long id;
 
     @NotNull

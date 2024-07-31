@@ -1,5 +1,6 @@
 package com.altun.gutim.service.impl;
 
+import com.altun.gutim.dto.request.AuthRequest;
 import com.altun.gutim.dto.request.ClassRequestDto;
 import com.altun.gutim.dto.request.UserRequestDto;
 import com.altun.gutim.dto.response.ClassResponseDto;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,9 +24,18 @@ import org.springframework.web.server.ResponseStatusException;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    @Override
-    public UserResponseDto create(UserRequestDto userRequestDto){
-        User user = userMapper.toEntity(userRequestDto);
+    private final PasswordEncoder passwordEncoder;
+
+    public UserResponseDto registerUser(AuthRequest authRequest){
+
+        if (userRepository.findByEmail(authRequest.getEmail()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with this email already exists");
+        }
+
+        User user = userMapper.toEntity(authRequest);
+
+        user.setPassword(passwordEncoder.encode(authRequest.getPassword()));
+        userRepository.save(user);
         return userMapper.toDto(user);
     }
     @Override

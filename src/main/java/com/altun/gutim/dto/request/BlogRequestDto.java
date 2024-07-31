@@ -13,15 +13,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class BlogRequestDto {
 
-    @NotNull(message = "Blog id must not be null")
-    @Positive(message = "Blog ID must be a positive number")
     private Long id;
 
+    @NotNull(message = "Title must not be null")
     private String title;
 
+    @NotNull(message = "Description must not be null")
     private String description;
 
+    @NotNull(message = "Date must not be null")
     private LocalDate date;
 
+    @NotNull(message = "Blogtype must not be null")
     private BlogType blogType;
 }

@@ -17,12 +17,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
-        UserResponseDto responseDto = userService.create(userRequestDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
-    }
-
     @GetMapping
     public ResponseEntity<Page<UserResponseDto>> getAllUsers(Pageable pageable) {
         Page<UserResponseDto> responseDtoPage = userService.getAllUsers(pageable);
